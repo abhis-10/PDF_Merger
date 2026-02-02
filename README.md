@@ -41,8 +41,12 @@ flowchart TD
 flowchart LR
     A[Client] -->|GET /| B[Upload Form]
     B -->|POST PDFs| C[Server (Express)]
+    
     C -->|Save files| D[uploads/]
-    D --> E[merge.js]
+    C -->|Call merge logic| E[merge.js]
+    
+    E -->|Read PDFs| D
     E -->|Merge via pdf-merger-js| F[Merged PDF]
+    
     F -->|Return| G[Client Download]
 ```
